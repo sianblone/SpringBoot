@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<link rel="stylesheet" type="text/css" href="/static/main.css">
+<link rel="stylesheet" type="text/css" th:href="@{/static/main.css}">
+</head>
+<body>
+	<h2>유저 목록</h2>
+	<table>
+		<thead>
+			<tr>
+				<th>아이디</th>
+				<th>이메일</th>
+				<th>전화번호</th>
+				<th>주소</th>
+				<th>비고</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr th:each="item : ${USER_LIST}">
+				<td th:text="${item.username}">아이디</td>
+				<td th:text="${item.email}">이메일</td>
+				<td th:text="${item.phone}">전화번호</td>
+				<td th:text="${item.address}">주소</td>
+				<td>
+					<p th:if="${item.username} == user" th:text="${item.username}">
+					<p th:unless="${item.username} == user" th:text="user아님">
+				</td>
+			</tr>
+		</tbody>
+	</table>
+</body>
+</html>
