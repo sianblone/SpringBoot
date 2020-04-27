@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<th:block th:include="include/include_head.html"/>
+	<style>
+		section {
+			width: 60%;
+			margin: 0 auto;
+		}
+		h1 {
+			text-align: center;
+		}
+		#book_form {
+			width: 60%;
+			margin: 10px auto;
+		}
+		.btn_box {
+			text-align: right;
+		}
+		#btn_save {
+			padding: 10px 20px;
+			margin: 50px 10px;
+			
+			border: none;
+			background-color: skyblue;
+			color: white;
+			cursor: pointer; 
+		}
+	</style>
+	<script>
+		$(function() {
+			$(document).on("click", "#btn_save", function() {
+				$("#book_form").submit()
+			})
+		})
+	</script>
+</head>
+<body>
+	<section>
+		<h1>도서 등록</h1>
+		<form id="book_form" method="POST" th:object="${BOOK}">
+			<div>
+				<label for="title">title</label>
+				<input th:field="*{title}"/>
+			</div>
+			
+			<div>
+				<label for="comp">comp</label>
+				<input th:field="*{comp}"/>
+			</div>
+			
+			<div>
+				<label for="auth">auth</label>
+				<input th:field="*{auth}"/>
+			</div>
+			
+			<div>
+				<label for="year">year</label>
+				<input th:field="*{year}"/>
+			</div>
+			
+			<div>
+				<label for="year">price</label>
+				<input th:field="*{price}" type="number"/>
+			</div>
+			
+		</form>
+		
+		<div class="btn_box">
+			<button id="btn_save" type="button">저장</button>
+		</div>
+	</section>
+</body>
+</html>

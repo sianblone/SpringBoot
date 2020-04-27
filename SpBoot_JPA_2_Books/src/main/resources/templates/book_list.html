@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<th:block th:include="include/include_head.html"/>
+	<style>
+		section {
+			width: 60%;
+			margin: 0 auto;
+		}
+		h1 {
+			text-align: center;
+		}
+		table {
+			width: 100%;
+			border-collapse: collapse;
+			margin: 10px auto;
+			text-align: center;
+		}
+		th, td {
+			text-overflow: hidden;
+			white-space: nowrap;
+		}
+		.btn_box {
+			text-align: right;
+		}
+		#btn_insert {
+			padding: 10px 20px;
+			margin: 50px 10px;
+			
+			border: none;
+			background-color: skyblue;
+			color: white;
+			cursor: pointer; 
+		}
+	</style>
+	<script>
+		$(function() {
+			$(document).on("click", "#btn_insert", function() {
+				document.location.href = "/book/save"
+			})
+			
+			$(document).on("click", ".book_tr", function() {
+				document.location.href = "/book/save?id=" + $(this).data("id")
+			})
+			
+			$(document).on("click", ".td_delete", function(e) {
+				e.stopPropagation()
+			})
+		})
+	</script>
+</head>
+<body>
+	<section>
+		<h1>도서 목록</h1>
+		<table>
+			<tr>
+				<th>title</th>
+				<th>comp</th>
+				<th>auth</th>
+				<th>year</th>
+				<th>price</th>
+				<th>삭제</th>
+			</tr>
+			
+			<tr class="book_tr" th:each="BOOK:${BOOK_LIST}" th:data-id="${BOOK.id}">
+				<td th:text="${BOOK.title}"></td>
+				<td th:text="${BOOK.comp}"></td>
+				<td th:text="${BOOK.auth}"></td>
+				<td th:text="${BOOK.year}"></td>
+				<td th:text="${BOOK.price}"></td>
+				<td class="td_delete" th:data-id="${BOOK.id}"><a th:href="@{/book/delete(id=${BOOK.id})}"></a></td>
+			</tr>
+		</table>
+		
+		<div class="btn_box">
+			<button id="btn_insert">도서 등록</button>
+		</div>
+	</section>
+	<footer>
+		<th:block th:include="page.html"/>
+	</footer>
+</body>
+</html>
