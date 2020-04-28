@@ -1,25 +1,28 @@
 <nav>
-	<ul class="pagination" th:with="start=${T(Math).floor(BOOK_LIST.number/10)*10+1}, last=(${start+9 < BOOK_LIST.totalPages ? start+9 : BOOK_LIST.totalPages})">
+	<ul class="pagination" th:with="start=${T(Math).floor(BOOK_LIST.number/10)*10+1},
+									last=(${start+9 < BOOK_LIST.totalPages ? start+9
+										: BOOK_LIST.totalPages == 0 ? 1
+											: BOOK_LIST.totalPages})">
 		<li class="page-item">
-			<a th:href="@{/book/pagelist(page=1)}" class="page-link">처음</a>
+			<a class="page-link" th:href="@{/book/pagelist(page=1)}">처음</a>
 		</li>
 		
 		<!-- 앞으로 -->
 		<li th:class="${BOOK_LIST.first} ? 'page-item disabled' : 'page-item' ">
-			<a th:href="${BOOK_LIST.first} ? '#' : @{/book/pagelist(page=${BOOK_LIST.number})}" class="page-link">&lt;</a>
+			<a class="page-link" th:href="${BOOK_LIST.first} ? '#' : @{/book/pagelist(page=${BOOK_LIST.number})}">&lt;</a>
 		</li>
 		
 		<!-- 페이지 리스트 -->
 		<li th:class="${page == BOOK_LIST.number + 1} ? 'page-item active' : 'page-item' " th:each="page:${#numbers.sequence(start,last)}">
-			<a th:href="@{/book/pagelist(page=${page})}" th:text="${page}" class="page-link"></a>
+			<a class="page-link" th:href="@{/book/pagelist(page=${page})}" th:text="${page}"></a>
 		</li>
 		
 		<li th:class="${BOOK_LIST.last} ? 'page-item disabled' : 'page-item' ">
-			<a th:href="${BOOK_LIST.last} ? '#' : @{/book/pagelist(page=${BOOK_LIST.number + 2})}" class="page-link">&gt;</a>
+			<a class="page-link" th:href="${BOOK_LIST.last} ? '#' : @{/book/pagelist(page=${BOOK_LIST.number + 2})}">&gt;</a>
 		</li>
 		
 		<li class="page-item">
-			<a th:href="@{/book/pagelist(page=${BOOK_LIST.totalPages})}" class="page-link">끝</a>
+			<a class="page-link" th:href="@{/book/pagelist(page=${BOOK_LIST.totalPages})}">끝</a>
 		</li>
 	</ul>
 </nav>
