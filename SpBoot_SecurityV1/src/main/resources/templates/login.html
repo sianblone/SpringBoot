@@ -1,9 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
-<link rel="stylesheet" th:href="@{/css/main.css}">
+<th:block th:include="include/head"/>
 <style>
 	header {
 		text-align: center;
@@ -14,11 +12,21 @@
 		text-align: center;
 	}
 </style>
+<script>
+	$(function() {
+		$(document).on("click", "#btn_join", function() {
+			document.location.href = "/user/join"
+		})
+	})
+</script>
 </head>
 <body>
 	<header>
 		<h1>로그인</h1>
 	</header>
+	
+	<nav th:replace="include/layout :: nav"/>
+	
 	<section>
 		<!--
 			th:href
@@ -26,7 +34,6 @@
 			이 속성들은 contextPath(rootPath)를 자동으로 지정해주는 URL을 생성한다
 		-->
 		<form th:action="@{login}" method="POST">
-			<input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}">
 			<div>
 				<label for="username">USER NAME</label>
 				<input id="username" name="username">
@@ -37,8 +44,11 @@
 			</div>
 			<div>
 				<button>LOG IN</button>
+				<button id="btn_join" type="button">회원가입</button>
 			</div>
 		</form>
 	</section>
+	
+	<footer th:replace="include/layout :: footer"/>
 </body>
 </html>

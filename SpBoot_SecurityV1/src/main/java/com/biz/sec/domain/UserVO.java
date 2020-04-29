@@ -41,10 +41,11 @@ public class UserVO implements UserDetails {
 	// 그렇지 않으면 JPA의 자동완성 method가 작동되지 않는다 : long -> Long , int -> Integer
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name="id", columnDefinition = "bigint")
 	private Long id;
 	
 	// Column을 따로 설정하지 않으면 length 기본값은 255
-	@Column(name="username", unique = true, length = 64)
+	@Column(name="username", columnDefinition = "varchar(64)", unique = true, length = 64)
 	private String username;
 	private String password;
 	
