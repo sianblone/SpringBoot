@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+	<nav class="container bg-dark text-white" th:fragment="nav">
+		<ul class="nav">
+			<li class="nav-item"><a class="nav-link" th:href="@{/}">Home</a></li>
+			<li class="nav-item"><a class="nav-link" th:href="@{/}">도서정보</a></li>
+			<li class="nav-item"><a class="nav-link" th:href="@{/}">EMS</a></li>
+			<li class="nav-item" sec:authorize="isAuthenticated()">
+				<a class="nav-link logout" href="javascript:void(0)">로그아웃</a>
+			</li>
+			<li class="nav-item" sec:authorize="isAuthenticated()">
+				<a class="nav-link" th:href="@{/logout}" th:text="${#authentication.principal.username}">Username</a>
+			</li>
+			<li class="nav-item" sec:authorize="hasAnyRole('ADMIN', 'USER')">
+				<a class="nav-link" th:href="@{/logout}" th:text="${#authentication.principal.username}">has Any Role</a>
+			</li>
+			<li class="nav-item" sec:authorize="hasRole('ADMIN')">
+				<a class="nav-link" th:href="@{/admin}">관리자</a>
+			</li>
+			<li class="nav-item" sec:authorize="!isAuthenticated()">
+				<a class="nav-link" th:href="@{/user/login}">로그인</a>
+			</li>
+			<li class="nav-item" sec:authorize="!isAuthenticated()">
+				<a class="nav-link" th:href="@{/user/join}">회원가입</a>
+			</li>
+		</ul>
+	</nav>
+	
+	<footer class="container text-center bg-primary" th:fragment="footer">
+		<address class="text-white">Copy &copy; email@email.com</address>
+	</footer>
+</html>

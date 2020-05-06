@@ -1,0 +1,9 @@
+@charset "UTF-8";
+header {
+	text-align: center;
+}
+section {
+	width: 80%;
+	margin: 0 auto;
+	text-align: center;
+}
