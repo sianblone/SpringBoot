@@ -10,6 +10,7 @@
 <script>
 	$(function() {
 		$(document).on("click", "a.logout", function() {
+			
 			$.post("[[@{/logout}]]", { "[[${_csrf.parameterName}]]" : "[[${_csrf.token}]]" }, function() {
 				document.location.replace("[[@{/}]]")
 			})

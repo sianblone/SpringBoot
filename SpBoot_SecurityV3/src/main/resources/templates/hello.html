@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<th:block th:include="include/head"/>
+</head>
+<body>
+	<header>
+		<h1>홈페이지 방문을 환영합니다</h1>
+	</header>
+	
+	<th:block th:replace="include/layout :: nav" />
+	
+	<section>
+		<p>Spring Boot 프로젝트</p>
+	</section>
+	
+	<th:block th:replace="include/layout :: footer" />
+</body>
+</html>

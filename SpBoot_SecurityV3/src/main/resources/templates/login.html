@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+<th:block th:include="include/head"/>
+<style>
+	header {
+		text-align: center;
+	}
+	section {
+		width: 80%;
+		margin: 0 auto;
+		text-align: center;
+	}
+</style>
+<script>
+	$(function() {
+		$(document).on("click", "#btn_join", function() {
+			document.location.href = "/user/join"
+		})
+	})
+</script>
+</head>
+<body>
+	<header>
+		<h1>로그인</h1>
+	</header>
+	
+	<nav th:replace="include/layout :: nav"/>
+	
+	<section>
+		<!--
+			th:href
+			th:action
+			이 속성들은 contextPath(rootPath)를 자동으로 지정해주는 URL을 생성한다
+		-->
+		<form th:action="@{login}" method="POST">
+			<div>
+				<label for="username">USER NAME</label>
+				<input id="username" name="username">
+			</div>
+			<div>
+				<label for="password">PASSWORD</label>
+				<input id="password" name="password" type="password">
+			</div>
+			<div>
+				<button>LOG IN</button>
+				<button id="btn_join" type="button">회원가입</button>
+			</div>
+		</form>
+	</section>
+	
+	<footer th:replace="include/layout :: footer"/>
+</body>
+</html>

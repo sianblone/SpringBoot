@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+<th:block th:include="include/head"/>
+<style>
+	header {
+		text-align: center;
+	}
+	section {
+		width: 80%;
+		margin: 0 auto;
+		text-align: center;
+	}
+</style>
+<script>
+	$(function() {
+		$(document).on("blur", "#username", function() {
+			
+			let id = $(this).val()
+			if(id == "") {
+				$("#m_username").html("<b>* 아이디를 입력하세요</b>")
+			}
+			
+		})
+	})
+</script>
+</head>
+<body>
+	<header>
+		<h1>회원가입</h1>
+	</header>
+	<th:block th:replace="include/layout :: nav" />
+	
+	<section>
+		<form th:action="@{/user/join}" th:object="${userVO}" method="POST">
+			<div>
+				<label for="username">아이디</label>
+				<input th:field="*{username}">
+				<div id="m_username"></div>
+			</div>
+			
+			<div>
+				<label for="password">비밀번호</label>
+				<input th:field="*{password}" type="password">
+			</div>
+			
+			<div>
+				<label for="re_password">비밀번호 확인</label>
+				<input id="re_password" name="re_password" type="password">
+			</div>
+			
+			<div>
+				<label for="email">Email</label>
+				<input th:field="*{email}">
+			</div>
+			
+			<div>
+				<button id="btn_join">회원가입</button>
+			</div>
+		</form>
+	</section>
+	
+	<th:block th:replace="include/layout :: footer" />
+</body>
+</html>
