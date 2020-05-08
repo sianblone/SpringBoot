@@ -29,10 +29,28 @@ public class BBsRestController {
 	}
 	
 	@CrossOrigin(value = "http://localhost:3000")
-	@RequestMapping(value = "/insert", method = RequestMethod.POST)
-	public boolean insert(BBsVO bbsVO) {
+	@RequestMapping(value = "/detail", method = RequestMethod.GET)
+	public BBsVO detail(Long bbs_id) {
+		BBsVO bbsVO = bbsSvc.findById(bbs_id);
+		return bbsVO;
+	}
+	
+	@CrossOrigin(value = "http://localhost:3000")
+	@RequestMapping(value = "/save", method = RequestMethod.POST)
+	public boolean save(BBsVO bbsVO) {
 		log.debug("게시판 데이터 : " + bbsVO.toString());
-		bbsSvc.save(bbsVO);
+		BBsVO returnVO = bbsSvc.save(bbsVO);
+		if(returnVO == null) {
+			return false;
+		}
+		return true;
+	}
+	
+	@CrossOrigin(value = "http://localhost:3000")
+	@RequestMapping(value = "/delete", method = RequestMethod.POST)
+	public boolean delete(long bbs_id) {
+		bbsSvc.delete(bbs_id);
+		
 		return true;
 	}
 

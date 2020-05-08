@@ -43,5 +43,13 @@ public class BBsService {
 	public BBsVO save(BBsVO bbsVO) {
 		return bbsDao.save(bbsVO);
 	}
+	
+	public BBsVO findById(long id) {
+		return bbsDao.findById(id).get();
+	}
+
+	public void delete(long bbs_id) {
+		bbsDao.deleteById(bbs_id);
+	}
 
 }
